@@ -10,8 +10,12 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "react": "16.13.1",
     "react-native": "0.63.2",
+    "react-native-image-picker": "^2.3.3",
+    "react-native-keyboard-aware-scrollview": "^2.1.0",
+    "react-native-permissions": "^2.1.5",
     "react-native-vector-icons": "^7.0.0",
     "styled-components": "^5.1.1"
   },
@@ -25,8 +29,10 @@
     "metro-react-native-babel-preset": "^0.61.0",
     "react-test-renderer": "16.13.1"
   },
-  "rnpm":{
-    "assets":["./assets/fonts/"]
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   },
   "jest": {
     "preset": "react-native"

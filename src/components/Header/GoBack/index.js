@@ -1,6 +1,6 @@
-import React from './node_modules/react';
+import React from 'react';
 
-import Icon from './node_modules/react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // import {} from 'react-native';
 

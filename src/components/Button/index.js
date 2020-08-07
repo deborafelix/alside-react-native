@@ -6,7 +6,7 @@ import {Container, Button, Text} from './styles';
 export default function Input({title, handleOnPress}) {
   return (
     <Container>
-      <Button>
+      <Button onPress={handleOnPress}>
         <Text>{title}</Text>
       </Button>
     </Container>
