@@ -3,20 +3,32 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "adb reverse tcp:3333 tcp:3333 && react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.11.0",
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/native": "^5.7.3",
+    "@react-navigation/stack": "^5.9.0",
     "axios": "^0.19.2",
     "react": "16.13.1",
     "react-native": "0.63.2",
+    "react-native-calendar-slider-carousel": "^1.0.1",
+    "react-native-calendars": "^1.308.0",
+    "react-native-gesture-handler": "^1.7.0",
     "react-native-image-picker": "^2.3.3",
     "react-native-keyboard-aware-scrollview": "^2.1.0",
     "react-native-permissions": "^2.1.5",
+    "react-native-reanimated": "^1.10.2",
+    "react-native-safe-area-context": "^3.1.4",
+    "react-native-screens": "^2.10.1",
     "react-native-vector-icons": "^7.0.0",
+    "react-native-weekly-calendar": "^0.2.0",
+    "rn-fetch-blob": "^0.12.0",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {

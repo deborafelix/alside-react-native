@@ -6,12 +6,18 @@ import Button from '../../components/Button';
 
 import Logo from '../../../assets/img/logo_black_without_phrase.png';
 
-export default function OnBoard() {
+export default function OnBoard({navigation}) {
   return (
     <Container>
       <Img source={Logo} />
-      <Button title={'sou uma empresa'} />
-      <Button title={'sou um altsider'} />
+      <Button
+        title={'sou uma empresa'}
+        handleOnPress={() => navigation.navigate('WelcomeCompany')}
+      />
+      <Button
+        title={'sou um altsider'}
+        handleOnPress={() => navigation.navigate('WelcomeUser')}
+      />
     </Container>
   );
 }

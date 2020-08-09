@@ -20,7 +20,6 @@ const getPermissionAsync = async () => {
 
 export const uploadImage = async (handleUploadImage) => {
   try {
-    console.log('vamo com tudo');
     const hasPermission = await getPermissionAsync();
     if (hasPermission) {
       const options = {

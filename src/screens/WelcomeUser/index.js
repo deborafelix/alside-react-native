@@ -15,10 +15,10 @@ import {
 import Logo from '../../../assets/img/logo_black_without_phrase.png';
 import Button from '../../components/Button';
 
-export default function WelcomeUser() {
+export default function WelcomeUser({navigation}) {
   return (
     <Container>
-      <GoBack onPress={() => console.log('voltar')}>
+      <GoBack onPress={() => navigation.navigate('WelcomeCompany')}>
         <Icon name="arrow-back" size={20} color="#697A8C" />
         <GoBackText>alside para empresas</GoBackText>
       </GoBack>
@@ -26,9 +26,9 @@ export default function WelcomeUser() {
         <Img source={Logo} />
         <Button
           title={'cadastre-se'}
-          handleOnPress={() => console.log('cadastro')}
+          handleOnPress={() => navigation.navigate('NewUser')}
         />
-        <ButtonLogin onPress={() => console.log('entrar')}>
+        <ButtonLogin onPress={() => navigation.navigate('LoginUser')}>
           <Text>entrar</Text>
         </ButtonLogin>
       </View>

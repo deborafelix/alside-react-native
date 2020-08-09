@@ -29,3 +29,7 @@ export const Text = styled.Text`
   font-size: 15px;
   margin-left: 5px;
 `;
+
+export const Button = styled.TouchableOpacity`
+  margin-top: 40px;
+`;

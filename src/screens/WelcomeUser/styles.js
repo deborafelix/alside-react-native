@@ -5,7 +5,7 @@ export const Container = styled.View`
   background-color: #eff1f3;
 `;
 
-export const GoBack = styled.View`
+export const GoBack = styled.TouchableOpacity`
   flex-direction: row;
   margin: 5px;
 `;

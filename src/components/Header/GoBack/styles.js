@@ -6,7 +6,7 @@ export const Container = styled.View`
   justify-content: space-between;
 `;
 
-export const GoBack = styled.View`
+export const GoBack = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   margin-right: 10px;

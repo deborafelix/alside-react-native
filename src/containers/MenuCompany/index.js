@@ -37,16 +37,9 @@ export default function Menu() {
         </Bubble>
       )}
 
-      {itemSelected === 'person' ? (
-        <BigBubble onPress={() => handleSelect('person')}>
-          <Icon name="person" size={24} color="#EFF1F3" />
-          <BigBubbleText>PERFIL</BigBubbleText>
-        </BigBubble>
-      ) : (
-        <Bubble onPress={() => handleSelect('person')}>
-          <Icon name="person" size={24} color="#247BA0" />
-        </Bubble>
-      )}
+      <Bubble onPress={() => handleSelect('out')}>
+        <Icon name="power-settings-new" size={24} color="#247ba0" />
+      </Bubble>
     </Container>
   );
 }

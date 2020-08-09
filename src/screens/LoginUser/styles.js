@@ -25,7 +25,11 @@ export const Text = styled.Text`
   margin-left: 5px;
 `;
 
-export const GoBack = styled.View`
+export const GoBack = styled.TouchableOpacity`
   flex-direction: row;
   margin: 5px;
+`;
+
+export const Button = styled.TouchableOpacity`
+  margin-top: 40px;
 `;
