@@ -6,10 +6,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {Container, Bubble, BigBubble, BigBubbleText} from './styles';
 
-export default function MenuInfo({handleOnBook, handleOnBuy}) {
+export default function MenuInfo({handleOnBook, handleOnBuy, handleGoHome}) {
   return (
     <Container>
-      <Bubble>
+      <Bubble onPress={handleGoHome}>
         <Icon name="home" size={24} color="#247BA0" />
       </Bubble>
 

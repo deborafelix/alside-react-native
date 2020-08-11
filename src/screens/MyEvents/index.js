@@ -16,6 +16,7 @@ export default function CompanyFeed({navigation}) {
     try {
       const getAllEvents = async () => {
         const newOrder = await getAll(token);
+        console.log(newOrder);
         const newEvents = newOrder.map((order) => order.event);
         const allDates = [...new Set(newEvents.map((event) => event.date))];
         const eventObj = allDates.map((date) => {
@@ -67,14 +68,14 @@ export default function CompanyFeed({navigation}) {
               {eventDate.eventByDate.map((event) => (
                 <EventCard
                   handleOnPress={() => handleOnPress(event)}
-                  key={event.id}
+                  key={event.id * Math.random(0, 1)}
                   event={event}
                 />
               ))}
             </>
           ))
         ) : (
-          <Text>Sem eventos nessa data...</Text>
+          <Text>Você não possui eventos ainda</Text>
         )}
       </ScrollView>
       <Menu

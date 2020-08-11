@@ -77,6 +77,10 @@ export default function InfoEvent({navigation, route}) {
       ],
     );
   };
+
+  const handleGoHome = () => {
+    navigation.navigate('Feed');
+  };
   return (
     <>
       <Header source={Logo} />
@@ -142,7 +146,11 @@ export default function InfoEvent({navigation, route}) {
           </TextInfo>
         </Info>
       </Container>
-      <Menu handleOnBook={handleOnBook} handleOnBuy={handleOnBuy} />
+      <Menu
+        handleGoHome={handleGoHome}
+        handleOnBook={handleOnBook}
+        handleOnBuy={handleOnBuy}
+      />
     </>
   );
 }
