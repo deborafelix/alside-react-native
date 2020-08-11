@@ -10,7 +10,7 @@ export const Text = styled.Text`
   font-size: 20px;
 `;
 
-export const Button = styled.TouchableOpacity`
+export const StyledButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   width: 320px;
@@ -19,5 +19,5 @@ export const Button = styled.TouchableOpacity`
   border-radius: 20px;
   border: 1px solid #697a8c;
   padding-left: 10px;
-  margin: 10px;
+  margin: 10px 0;
 `;

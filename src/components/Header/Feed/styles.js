@@ -6,12 +6,6 @@ export const Container = styled.View`
   justify-content: space-between;
 `;
 
-export const Icons = styled.View`
-  flex-direction: row;
-  align-items: center;
-  margin-right: 10px;
-`;
-
 export const Img = styled.Image`
   width: 100px;
   height: 40px;

@@ -68,7 +68,7 @@ export default function NewUser({navigation}) {
       return;
     }
     try {
-      await register({...user, imgUrl});
+      await register({...user, imgUrl: imgUrl.uri});
       navigation.navigate('LoginUser');
     } catch (e) {
       Alert.alert('Erro', 'Erro inesperado, tente novamente', [

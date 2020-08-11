@@ -30,10 +30,6 @@ export default function NewCompany({navigation}) {
     } else if (response.customButton) {
       console.log('User tapped custom button: ', response.customButton);
     } else {
-      const source = {uri: response.uri};
-
-      // You can also display the image using data:
-      // const source = { uri: 'data:image/jpeg;base64,' + response.data };
       const url = await file.uploadImage(response);
       setImgUrl(url);
     }
@@ -68,7 +64,7 @@ export default function NewCompany({navigation}) {
       return;
     }
     try {
-      await register({...company, imgUrl});
+      await register({...company, imgUrl: imgUrl.uri});
       navigation.navigate('LoginCompany');
     } catch (e) {
       Alert.alert('Erro', 'Erro inesperado, tente novamente', [

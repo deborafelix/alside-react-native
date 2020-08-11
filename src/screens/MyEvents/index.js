@@ -1,24 +1,31 @@
 import React, {useState, useEffect, useContext} from 'react';
 import moment from 'moment';
 
-import {Text, ScrollView} from './styles';
-import Week from '../../components/Week';
-import Header from '../../components/Header/Feed';
+import {Text, Title, ScrollView} from './styles';
 import EventCard from '../../components/EventCard';
+import Header from '../../components/Header/Feed';
 import Menu from '../../containers/Menu';
-import {getAll} from '../../services/event';
+import {getAll} from '../../services/order';
 import {Alert} from 'react-native';
 import Context from '../../contexts';
 
-export default function Feed({navigation}) {
+export default function CompanyFeed({navigation}) {
   const [events, setEvents] = useState([]);
-  const [filteredEvents, setFilteredEvents] = useState([]);
-  const {selectedDate, signOut} = useContext(Context);
+  const {token, signOut} = useContext(Context);
   useEffect(() => {
     try {
       const getAllEvents = async () => {
-        const newEvents = await getAll();
-        setEvents(newEvents);
+        const newOrder = await getAll(token);
+        const newEvents = newOrder.map((order) => order.event);
+        const allDates = [...new Set(newEvents.map((event) => event.date))];
+        const eventObj = allDates.map((date) => {
+          const eventByDate = newEvents.filter((event) => event.date === date);
+          return {
+            date: moment(date).format('ddd, MMM DD'),
+            eventByDate,
+          };
+        });
+        setEvents(eventObj);
       };
       getAllEvents();
     } catch (e) {
@@ -30,18 +37,11 @@ export default function Feed({navigation}) {
         },
       ]);
     }
-  }, []);
+  }, [token]);
+
   const handleOnPress = (event) => {
     navigation.navigate('InfoEvent', event);
   };
-  useEffect(() => {
-    const tmpEvents = events.filter(
-      (event) =>
-        moment(event.date).format('D MM') ===
-        moment(selectedDate).format('D MM'),
-    );
-    setFilteredEvents(tmpEvents);
-  }, [selectedDate, events]);
 
   const handleGoHome = () => {
     navigation.navigate('Feed');
@@ -59,22 +59,26 @@ export default function Feed({navigation}) {
   return (
     <>
       <Header />
-      <Week />
       <ScrollView>
-        {filteredEvents.length > 0 ? (
-          filteredEvents.map((event) => (
-            <EventCard
-              key={event.id}
-              event={event}
-              handleOnPress={() => handleOnPress(event)}
-            />
+        {events.length > 0 ? (
+          events.map((eventDate) => (
+            <>
+              <Title key={eventDate.date}>{eventDate.date.toUpperCase()}</Title>
+              {eventDate.eventByDate.map((event) => (
+                <EventCard
+                  handleOnPress={() => handleOnPress(event)}
+                  key={event.id}
+                  event={event}
+                />
+              ))}
+            </>
           ))
         ) : (
           <Text>Sem eventos nessa data...</Text>
         )}
       </ScrollView>
       <Menu
-        selected="home"
+        selected="local-activity"
         handleGoHome={handleGoHome}
         handleGoOut={handleGoOut}
         handleGoMyEvents={handleGoMyEvents}

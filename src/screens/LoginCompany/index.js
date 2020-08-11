@@ -30,6 +30,7 @@ export default function LoginCompany({navigation}) {
     }
     try {
       await signIn(company, authCompany);
+      navigation.navigate('CompanyFeed');
     } catch (e) {
       Alert.alert('Erro', 'Erro inesperado, tente novamente', [
         {

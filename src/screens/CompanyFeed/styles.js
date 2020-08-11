@@ -7,7 +7,15 @@ export const Text = styled.Text`
   align-self: center;
 `;
 
+export const Title = styled.Text`
+  color: #000;
+  font-family: 'Poppins-Bold';
+  font-size: 20px;
+  margin: 10px 10px 0 10px;
+  align-self: flex-start;
+`;
+
 export const ScrollView = styled.ScrollView`
-  height: 430px;
-  max-height: 430px;
+  height: 520px;
+  max-height: 520px;
 `;

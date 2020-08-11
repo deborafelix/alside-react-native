@@ -17,10 +17,7 @@ export const uploadImage = async (img) => {
         },
       ],
     );
-    // const test = JSON.parse(response);
-    console.log();
     const data = JSON.parse(response.data);
-    console.log(data.url);
     const source = {uri: data.url};
     return source;
   } catch (e) {

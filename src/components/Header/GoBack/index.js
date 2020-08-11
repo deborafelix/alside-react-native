@@ -2,8 +2,6 @@ import React from 'react';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-// import {} from 'react-native';
-
 import {Container, GoBack, Img, Text} from './styles';
 
 import Logo from '../../../../assets/img/logo_black.png';

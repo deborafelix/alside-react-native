@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
@@ -15,23 +16,26 @@ import {
 
 import Picture from '../../../assets/img/dev_bday.jpg';
 
-export default function EventCard() {
+export default function EventCard({event, handleOnPress}) {
+  console.log(event);
   return (
-    <Container>
-      <Img source={Picture} />
+    <Container onPress={handleOnPress}>
+      <Img source={event.imgUrl ? {uri: event.imgUrl} : Picture} />
       <Info>
-        <Time>06 ago, 2020</Time>
+        <Time>{moment(event.date).format('DD MMM, yyyy')}</Time>
 
-        <Name>Despedida do Alex</Name>
+        <Name>{event.name.toUpperCase()}</Name>
 
         <Adress>
           <Icon name="place" size={22} color="#697A8C" />
-          <AdressText>Rua Maria Bicego, 242</AdressText>
+          <AdressText>
+            {event.city.toLowerCase()} - {event.state.toUpperCase()}
+          </AdressText>
         </Adress>
 
         <Category>
           <Icon name="confirmation-number" size={20} color="#697A8C" />
-          <CategoryText>Festa</CategoryText>
+          <CategoryText>{event.category.toUpperCase()}</CategoryText>
         </Category>
       </Info>
     </Container>

@@ -29,6 +29,7 @@ export default function LoginUser({navigation}) {
     }
     try {
       await signIn(user, authUser);
+      navigation.navigate('Feed');
     } catch (e) {
       Alert.alert('Erro', 'Erro inesperado, tente novamente', [
         {

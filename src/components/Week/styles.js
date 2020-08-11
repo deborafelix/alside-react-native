@@ -4,7 +4,7 @@ export const Container = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 10px;
+  margin: 10px 10px 20px 10px;
 `;
 
 export const Day = styled.TouchableOpacity`
@@ -30,4 +30,9 @@ export const DayText = styled.Text`
   margin-top: -10px;
   padding: 0;
   font-size: 12px;
+`;
+
+export const ArrowButton = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: center;
 `;

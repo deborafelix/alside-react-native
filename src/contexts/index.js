@@ -1,9 +1,11 @@
 import React, {useState, createContext} from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
+import moment from 'moment';
+import 'moment/locale/pt-br';
 
 const initialState = {
   token: null,
   signed: false,
+  selectedDate: moment(Date.now()),
   user: {
     email: '',
     name: '',
@@ -16,29 +18,7 @@ const Context = createContext(initialState);
 export const ContextProvider = ({children}) => {
   const [token, setToken] = useState();
   const [user, setUser] = useState(initialState.user);
-
-  //   const getToken = async () => {
-  //     try {
-  //       if (!token) {
-  //         const savedToken = await AsyncStorage.getItem('token');
-  //         if (!savedToken) {
-  //           return;
-  //         }
-  //         return savedToken;
-  //       }
-  //       return token;
-  //     } catch (err) {}
-  //   };
-
-  //   const verifyLogin = async () => {
-  //     const savedToken = await getToken();
-  //     if (savedToken) {
-  //       try {
-  //         const user = await auth.restoreSession(savedToken);
-  //         setLogedInfo(savedToken, user);
-  //       } catch (err) {}
-  //     }
-  //   };
+  const [selectedDate, setSelectedDate] = useState(initialState.selectedDate);
 
   const signIn = async (tmpUser, auth) => {
     try {
@@ -49,17 +29,15 @@ export const ContextProvider = ({children}) => {
     }
   };
 
-  const setLogedInfo = async (newToken, user) => {
+  const setLogedInfo = (newToken, user) => {
     try {
-      await AsyncStorage.setItem('token', newToken);
       setToken(newToken);
       setUser((prev) => ({...prev, ...user}));
     } catch (err) {}
   };
 
-  const signOut = async () => {
+  const signOut = () => {
     try {
-      await AsyncStorage.removeItem('token');
       setToken(false);
       setUser(initialState.user);
     } catch (err) {}
@@ -73,6 +51,8 @@ export const ContextProvider = ({children}) => {
         signIn,
         user,
         signOut,
+        selectedDate,
+        setSelectedDate,
       }}>
       {children}
     </Context.Provider>

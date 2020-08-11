@@ -5,7 +5,6 @@ const getPermissionAsync = async () => {
   const status = await Permissions.check(
     Permissions.PERMISSIONS.ANDROID.CAMERA,
   );
-  console.log(status);
   if (status === Permissions.RESULTS.GRANTED) {
     return true;
   } else {

@@ -2,12 +2,15 @@ import React, {useState} from 'react';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-// import {} from 'react-native';
-
 import {Container, Bubble, BigBubble, BigBubbleText} from './styles';
 
-export default function Menu() {
-  const [itemSelected, setItemSelected] = useState('home');
+export default function Menu({
+  handleGoHome,
+  handleGoMyEvents,
+  handleGoOut,
+  selected,
+}) {
+  const [itemSelected, setItemSelected] = useState(selected);
 
   const handleSelect = (option) => {
     setItemSelected(option);
@@ -21,19 +24,11 @@ export default function Menu() {
           <BigBubbleText>INÍCIO</BigBubbleText>
         </BigBubble>
       ) : (
-        <Bubble onPress={() => handleSelect('home')}>
+        <Bubble
+          onPress={() => {
+            handleGoHome();
+          }}>
           <Icon name="home" size={24} color="#247BA0" />
-        </Bubble>
-      )}
-
-      {itemSelected === 'place' ? (
-        <BigBubble onPress={() => handleSelect('place')}>
-          <Icon name="place" size={24} color="#EFF1F3" />
-          <BigBubbleText>LOCALIZAÇÃO</BigBubbleText>
-        </BigBubble>
-      ) : (
-        <Bubble onPress={() => handleSelect('place')}>
-          <Icon name="place" size={24} color="#247BA0" />
         </Bubble>
       )}
 
@@ -43,12 +38,19 @@ export default function Menu() {
           <BigBubbleText>MEUS EVENTOS</BigBubbleText>
         </BigBubble>
       ) : (
-        <Bubble onPress={() => handleSelect('local-activity')}>
+        <Bubble
+          onPress={() => {
+            handleGoMyEvents();
+          }}>
           <Icon name="local-activity" size={24} color="#247BA0" />
         </Bubble>
       )}
 
-      <Bubble onPress={() => handleSelect('out')}>
+      <Bubble
+        onPress={() => {
+          handleSelect('out');
+          handleGoOut();
+        }}>
         <Icon name="power-settings-new" size={24} color="#247ba0" />
       </Bubble>
     </Container>

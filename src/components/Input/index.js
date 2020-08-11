@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Container, Text, TextInput} from './styles';
 
 export default function Input({
@@ -10,6 +9,7 @@ export default function Input({
   size,
   keyType,
   password,
+  keyboardType,
 }) {
   const setOnChange = (e) => {
     const {text} = e.nativeEvent;
@@ -20,6 +20,7 @@ export default function Input({
       <Text>{title}</Text>
       <TextInput
         value={value}
+        keyboardType={keyboardType}
         width={size}
         secureTextEntry={password}
         onChange={setOnChange}

@@ -17,7 +17,6 @@ export const Bubble = styled.TouchableOpacity`
 `;
 
 export const BigBubble = styled.TouchableOpacity`
-  /* transition: 5ms; */
   min-width: 40px;
   height: 40px;
   border: 2px solid #247ba0;

@@ -1,14 +1,13 @@
 import React from 'react';
 
-// import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Container, Button, Text} from './styles';
+import {Container, StyledButton, Text} from './styles';
 
-export default function Input({title, handleOnPress}) {
+export default function Button({title, handleOnPress}) {
   return (
     <Container>
-      <Button onPress={handleOnPress}>
+      <StyledButton onPress={handleOnPress}>
         <Text>{title}</Text>
-      </Button>
+      </StyledButton>
     </Container>
   );
 }

@@ -1,11 +1,13 @@
-import React from 'react';
-
+import React, {useContext} from 'react';
+import moment from 'moment';
+import {Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Logo from '../../../assets/img/logo_black_without_phrase.png';
 import Picture from '../../../assets/img/dev_bday.jpg';
+import {buy, book} from '../../services/order';
 import Menu from '../../containers/MenuInfo';
-
+import Context from '../../contexts';
 import {
   Container,
   Header,
@@ -19,14 +21,69 @@ import {
   ThinText,
 } from './styles';
 
-export default function InfoEvent() {
+export default function InfoEvent({navigation, route}) {
+  const event = route.params;
+  const {token} = useContext(Context);
+  const handleOnBuy = async () => {
+    try {
+      await buy(
+        {
+          event_id: event.id,
+          value: event.value,
+        },
+        token,
+      );
+      handleOnSuccess();
+    } catch (e) {
+      Alert.alert('Erro', 'Erro inesperado, tente novamente', [
+        {
+          text: 'Cancelar',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+      ]);
+    }
+  };
+  const handleOnBook = async () => {
+    try {
+      await book(
+        {
+          event_id: event.id,
+          value: event.value,
+        },
+        token,
+      );
+      handleOnSuccess();
+    } catch (e) {
+      Alert.alert('Erro', 'Erro inesperado, tente novamente', [
+        {
+          text: 'Cancelar',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+      ]);
+    }
+  };
+  const handleOnSuccess = () => {
+    Alert.alert(
+      'Sucesso',
+      'Parabéns, sua solicitação foi realizada com exito',
+      [
+        {
+          text: 'Okay!',
+          onPress: () => navigation.navigate('Feed'),
+          style: 'default',
+        },
+      ],
+    );
+  };
   return (
     <>
       <Header source={Logo} />
       <Container>
-        <Img source={Picture} />
+        <Img source={event.imgUrl ? {uri: event.imgUrl} : Picture} />
 
-        <Name>Despedida do Alex</Name>
+        <Name>{event.name}</Name>
 
         <Info>
           <Bubble>
@@ -36,8 +93,8 @@ export default function InfoEvent() {
           <Line />
 
           <TextInfo>
-            <BoldText>06 agosto, 2020</BoldText>
-            <ThinText>quinta-feira, 16:00 - 00:00</ThinText>
+            <BoldText>{moment(event.date).format('DD MMM, yyyy')}</BoldText>
+            <ThinText>{moment(event.date).format('dddd, hh:mm')}</ThinText>
           </TextInfo>
         </Info>
 
@@ -49,8 +106,13 @@ export default function InfoEvent() {
           <Line />
 
           <TextInfo>
-            <BoldText>campinas - SP</BoldText>
-            <ThinText>rua maria bicego, 242 - vila santa isabel</ThinText>
+            <BoldText>
+              {event.city.toLowerCase()}-{event.state.toLowerCase()}
+            </BoldText>
+            <ThinText>
+              {event.street.toLowerCase()}, {event.number} -{' '}
+              {event.neighborhood.toLowerCase()}
+            </ThinText>
           </TextInfo>
         </Info>
 
@@ -62,8 +124,8 @@ export default function InfoEvent() {
           <Line />
 
           <TextInfo>
-            <BoldText>R$ 20,00</BoldText>
-            <ThinText>inclui: comida à vontade</ThinText>
+            <BoldText>R$ {event.value}</BoldText>
+            <ThinText>inclui: {event.includeValue}</ThinText>
           </TextInfo>
         </Info>
 
@@ -76,11 +138,11 @@ export default function InfoEvent() {
 
           <TextInfo>
             <BoldText>ponto de venda oficial</BoldText>
-            <ThinText>Loja Merida</ThinText>
+            <ThinText>{event.company.companyName}</ThinText>
           </TextInfo>
         </Info>
       </Container>
-      <Menu />
+      <Menu handleOnBook={handleOnBook} handleOnBuy={handleOnBuy} />
     </>
   );
 }
